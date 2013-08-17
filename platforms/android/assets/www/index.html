@@ -35,8 +35,26 @@
         </div>
         <script type="text/javascript" src="phonegap.js"></script>
         <script type="text/javascript" src="js/index.js"></script>
+        <script type="text/javascript" src="plugins/com.phonegap.plugins.barcodescanner/www/barcodescanner.js"></script>
         <script type="text/javascript">
             app.initialize();
+
+            var scanOnReady = function () {
+	            var scanner = cordova.require("com.phonegap.plugins.barcodescanner.barcodescanner");
+				scanner.scan(
+					function (result) {
+						alert("We got a barcode\n" +
+						"Result: " + result.text + "\n" +
+						"Format: " + result.format + "\n" +
+						"Cancelled: " + result.cancelled);
+					},
+					function (error) {
+						alert("Scanning failed: " + error);
+					}
+				);
+            }
+
+			document.addEventListener('deviceready', scanOnReady, false);
         </script>
     </body>
 </html>

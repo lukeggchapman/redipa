@@ -11,6 +11,8 @@
  var exec = require('cordova/exec'),
     cordova = require('cordova');
 
+ cordova.exec = exec;
+
  var BarcodeScanner = function () {
  };
 

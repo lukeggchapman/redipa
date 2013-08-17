@@ -11,6 +11,8 @@ cordova.define("com.phonegap.plugins.barcodescanner.barcodescanner", function(re
  var exec = require('cordova/exec'),
     cordova = require('cordova');
 
+ cordova.exec = exec;
+
  var BarcodeScanner = function () {
  };
 
