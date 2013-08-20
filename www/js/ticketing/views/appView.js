@@ -15,14 +15,41 @@ define(['backbone', 'underscore', 'collections/tickets', 'jquery', 'jquerymobile
 		},
 
 		initialize: function () {
-			this.scanner = cordova.require("com.phonegap.plugins.barcodescanner.barcodescanner");
-			$.getJSON('/js/ticketing/data/tickets.json', _.bind(this.ready, this));
-
+			this.scanner = window.cordova ? cordova.require("com.phonegap.plugins.barcodescanner.barcodescanner") : {};
+			if (!window.localStorage.getItem('tickets')) {
+				console.log('Loading tickets from JSON...');
+				$.getJSON('js/ticketing/data/tickets.json')
+				.done(function () {
+					console.log('Fetching tickets completed');
+				})
+				.fail(function () {
+					var errorMsg = 'An error occured while fetching the tickets';
+					if (window.navigator.notification) {
+						window.navigator.notification.alert(
+							errorMsg,
+							function callback() {
+								// reset local storage
+								window.localStorage.clear();
+							},
+							'Error',
+							'Close'
+						);
+					} else {
+						window.alert(errorMsg);
+					}
+				})
+				.always(_.bind(this.ready, this));
+			} else {
+				this.ready(null);
+			}
 			return this;
 		},
 
 		ready: function (data) {
 			this.tickets = new TicketsCollection(data);
+			if (!data) {
+				this.tickets.fetch();
+			}
 			this.$el.removeClass("hide");
 		},
 

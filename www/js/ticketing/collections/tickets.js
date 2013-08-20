@@ -8,6 +8,8 @@ define(['backbone', 'models/ticket', 'localstorage'], function (Backbone, Ticket
 		/**
          * Type of model that this collection contains.
          */
-		model: Ticket
+		model: Ticket,
+
+		localStorage: new Backbone.LocalStorage('tickets')
 	});
 });
