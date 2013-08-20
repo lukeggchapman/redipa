@@ -117,12 +117,10 @@
 /Users/Chappo/PhoneGap/redipa/platforms/android/assets/www/js/ticketing/models \
 /Users/Chappo/PhoneGap/redipa/platforms/android/assets/www/js/ticketing/require.config.js \
 /Users/Chappo/PhoneGap/redipa/platforms/android/assets/www/js/ticketing/template.config.js \
-/Users/Chappo/PhoneGap/redipa/platforms/android/assets/www/js/ticketing/templates \
 /Users/Chappo/PhoneGap/redipa/platforms/android/assets/www/js/ticketing/views \
 /Users/Chappo/PhoneGap/redipa/platforms/android/assets/www/js/ticketing/collections/tickets.js \
 /Users/Chappo/PhoneGap/redipa/platforms/android/assets/www/js/ticketing/data/tickets.json \
 /Users/Chappo/PhoneGap/redipa/platforms/android/assets/www/js/ticketing/models/ticket.js \
-/Users/Chappo/PhoneGap/redipa/platforms/android/assets/www/js/ticketing/templates/main.twig \
 /Users/Chappo/PhoneGap/redipa/platforms/android/assets/www/js/ticketing/views/appView.js \
 /Users/Chappo/PhoneGap/redipa/platforms/android/assets/www/js/vendor/backbone.js \
 /Users/Chappo/PhoneGap/redipa/platforms/android/assets/www/js/vendor/jquery.js \

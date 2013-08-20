@@ -16,13 +16,6 @@ define(['backbone', 'underscore', 'collections/tickets', 'jquery', 'jquerymobile
 
 		initialize: function () {
 			this.scanner = cordova.require("com.phonegap.plugins.barcodescanner.barcodescanner");
-			$.mobile.loading('show', {
-				text: 'Loading...',
-				textVisible: true,
-				theme: 'a',
-				html: ""
-			});
-
 			$.getJSON('/js/ticketing/data/tickets.json', _.bind(this.ready, this));
 
 			return this;
@@ -30,8 +23,7 @@ define(['backbone', 'underscore', 'collections/tickets', 'jquery', 'jquerymobile
 
 		ready: function (data) {
 			this.tickets = new TicketsCollection(data);
-			$.mobile.loading('hide');
-			this.$el.removeClass('hide');
+			this.$el.removeClass("hide");
 		},
 
 		// Test Object:
@@ -44,7 +36,7 @@ define(['backbone', 'underscore', 'collections/tickets', 'jquery', 'jquerymobile
 			var ticket = this.tickets.where({ticket: result.text});
 			if (ticket.length == 1) {
 				// TODO: write success UI
-				console.log('ticket', ticket);
+				alert('ticket' + ticket[0].get("description"));
 			} else {
 				// TODO: write error UI
 				alert("Ticket Error");
