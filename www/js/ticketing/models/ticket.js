@@ -5,6 +5,12 @@ define(['backbone'], function (Backbone) {
 
 	return Backbone.Model.extend({
 
+		defaults: function () {
+			return {
+				scanned: false
+			};
+		},
+
 		initialize: function (options) {
 			this.save();
 			return this;
