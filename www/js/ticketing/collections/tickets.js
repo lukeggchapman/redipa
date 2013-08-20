@@ -1,6 +1,6 @@
 /*global define*/
 
-define(['backbone', 'models/ticket'], function (Backbone, Ticket) {
+define(['backbone', 'models/ticket', 'localstorage'], function (Backbone, Ticket) {
 	"use strict";
 
 	return Backbone.Collection.extend({
