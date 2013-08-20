@@ -24,10 +24,67 @@
 						Search
 					</a>
 				</div>
+				<div class="ticketDetails">
+					<div data-role="fieldcontain" class="ticketField">
+					    <label for="purchaseId">
+					        Purchase Id:
+						    <input name="purchaseId" id="purchaseId" placeholder="" value="" type="text" onkeypress="return false;">
+					    </label>
+					</div>
+					<div data-role="fieldcontain" class="ticketField">
+					    <label for="ticket">
+					        Ticket Code:
+						    <input name="ticket" id="ticket" placeholder="" value="" type="text" onkeypress="return false;">
+					    </label>
+					</div>
+					<div data-role="fieldcontain" class="ticketField">
+					    <label for="email">
+					        Email:
+						    <input name="email" id="email" placeholder="" value="" type="text" onkeypress="return false;">
+					    </label>
+					</div>
+					<div data-role="fieldcontain" class="ticketField">
+					    <label for="description">
+					        Description:
+						    <input name="description" id="description" placeholder="" value="" type="text" onkeypress="return false;">
+					    </label>
+					</div>
+					<div data-role="fieldcontain" class="ticketField">
+					    <label for="category">
+					        Category:
+						    <input name="category" id="category" placeholder="" value="" type="text" onkeypress="return false;">
+					    </label>
+					</div>
+					<div class="errormsg">
+					</div>
+				</div>
 			</div>
 		</section>
         <script type="text/javascript" src="phonegap.js"></script>
         <script type="text/javascript" src="plugins/com.phonegap.plugins.barcodescanner/www/barcodescanner.js"></script>
         <script type="text/javascript" src="js/vendor/require.js" data-main="js/ticketing/require.config"></script>
+        <script type="text/javascript">
+        	// require(["app"], function (TicketingApp) {
+        	// 	var ticketApp = new TicketingApp();
+	        //     ticketApp.init();
+        	// });
+
+   //          var scanOnReady = function () {
+	  //           var scanner = cordova.require("com.phonegap.plugins.barcodescanner.barcodescanner");
+			// 	scanner.scan(
+			// 		function (result) {
+			// 			alert("We got a barcode\n" +
+			// 			"Result: " + result.text + "\n" +
+			// 			"Format: " + result.format + "\n" +
+			// 			"Cancelled: " + result.cancelled);
+			// 		},
+			// 		function (error) {
+			// 			alert("Scanning failed: " + error);
+			// 		}
+			// 	);
+   //          }
+
+			// document.addEventListener('deviceready', scanOnReady, false);
+        </script>
     </body>
 </html>

@@ -56,22 +56,40 @@ define(['backbone', 'underscore', 'collections/tickets', 'jquery', 'jquerymobile
 		// Test Object:
 		// {"text":"l2VK0lQdGQ", "format":"QRCode","cancelled":false}
 		scan: function () {
+			// Remove all other classes (ticket type)
+			this.$el.find('.ticketDetails').attr('class', 'ticketDetails');
 			this.scanner.scan(_.bind(this.ticketScanned, this), _.bind(this.ticketFailed, this));
 		},
 
 		ticketScanned: function (result) {
 			var ticket = this.tickets.where({ticket: result.text});
 			if (ticket.length == 1) {
-				// TODO: write success UI
-				alert('ticket' + ticket[0].get("description"));
+				this.setTicketFields(ticket[0]);
+				// alert('ticket' + ticket[0].get("description"));
 			} else {
-				// TODO: write error UI
-				alert("Ticket Error");
+				var ticketDetails = this.$el.find('.ticketDetails').addClass("error");
+				var msg;
+				if (ticket.length > 1) {
+					msg = "Duplicate ticket found!";
+				} else {
+					msg = "No ticket Found!";
+				}
+				ticketDetails.find('.errormsg').html(msg);
 			}
 		},
 
+		setTicketFields: function (ticket) {
+			var ticketDetails = this.$el.find('.ticketDetails').addClass(ticket.get("type"));
+			ticketDetails.find("#purchaseId").val(ticket.get("purchaseId"));
+			ticketDetails.find("#ticket").val(ticket.get("ticket"));
+			ticketDetails.find("#email").val(ticket.get("email"));
+			ticketDetails.find("#description").val(ticket.get("description"));
+			ticketDetails.find("#category").val(ticket.get("category"));
+		},
+
 		ticketFailed: function (error) {
-			alert("Scanning failed: " + error);
+			var ticketDetails = this.$el.find('.ticketDetails').addClass("error");
+			ticketDetails.find('.errormsg').html("Scanning failed: " + error);
 		}
 	});
 });
