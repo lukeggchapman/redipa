@@ -1,3 +1,46 @@
 .hide {
 	display: none;
 }
+
+.ticketDetails {
+	display: none;
+	padding: 10px;
+	font-size: 18px;
+}
+
+.ticketDetails input {
+	font-size: 18px;
+	background-color: #FFF;
+}
+
+.ticketDetails .errormsg {
+	display: none;
+}
+
+.ticketDetails.presale {
+	display: block;
+	background-color: #74cfff;
+}
+
+.ticketDetails.crew {
+	display: block;
+	background-color: #79ff6a;
+}
+
+.ticketDetails.error {
+	display: block;
+	background-color: #ff7984;
+}
+
+.ticketDetails.error .ticketField {
+	display: none;
+}
+
+.ticketDetails.error .errormsg {
+	display: block;
+}
+
+/* Jquery UI overrides */
+.ui-field-contain, fieldset.ui-field-contain {
+	padding: 0;
+}
