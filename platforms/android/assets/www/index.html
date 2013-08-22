@@ -16,51 +16,111 @@
 						Psyfari Ticketing
 					</h3>
 				</div>
-				<div data-role="content">
-					<a data-role="button" data-theme="b" href="#page1" data-icon="grid" data-iconpos="left" class="btn-scan">
+				<div class="buttons">
+					<a data-role="button" data-theme="b" data-icon="grid" data-iconpos="left" class="btn-scan">
 						Scan
 					</a>
-					<a data-role="button" data-theme="d" href="#page1" data-icon="search" data-iconpos="left" class="btn-seach">
+					<a data-role="button" data-theme="d" data-icon="search" data-iconpos="left" class="btn-search">
 						Search
 					</a>
 				</div>
 				<div class="ticketDetails">
 					<div class="errormsg"></div>
+					<div class="successmsg"></div>
 					<div data-role="fieldcontain" class="ticketField">
 					    <label for="purchaseId">
 					        Purchase Id:
-						    <input name="purchaseId" id="purchaseId" placeholder="" value="" type="text" onkeypress="return false;">
+						    <input name="purchaseId" class="purchaseId" placeholder="" value="" type="text" onkeypress="return false;">
 					    </label>
 					</div>
 					<div data-role="fieldcontain" class="ticketField">
 					    <label for="ticket">
 					        Ticket Code:
-						    <input name="ticket" id="ticket" placeholder="" value="" type="text" onkeypress="return false;">
+						    <input name="ticket" class="ticket" placeholder="" value="" type="text" onkeypress="return false;">
 					    </label>
 					</div>
 					<div data-role="fieldcontain" class="ticketField">
 					    <label for="email">
 					        Email:
-						    <input name="email" id="email" placeholder="" value="" type="text" onkeypress="return false;">
+						    <input name="email" class="email" placeholder="" value="" type="text" onkeypress="return false;">
 					    </label>
 					</div>
 					<div data-role="fieldcontain" class="ticketField">
 					    <label for="description">
 					        Description:
-						    <input name="description" id="description" placeholder="" value="" type="text" onkeypress="return false;">
+						    <input name="description" class="description" placeholder="" value="" type="text" onkeypress="return false;">
 					    </label>
 					</div>
 					<div data-role="fieldcontain" class="ticketField">
 					    <label for="category">
 					        Category:
-						    <input name="category" id="category" placeholder="" value="" type="text" onkeypress="return false;">
+						    <input name="category" class="category" placeholder="" value="" type="text" onkeypress="return false;">
 					    </label>
 					</div>
 					<div data-role="fieldcontain" class="ticketField">
 					    <label for="cost">
 					        Cost:
-						    <input name="cost" id="cost" placeholder="" value="" type="text" onkeypress="return false;">
+						    <input name="cost" class="cost" placeholder="" value="" type="text" onkeypress="return false;">
 					    </label>
+					</div>
+				</div>
+				<div class="search hide">
+					<div class="errormsg"></div>
+					<div class="search-msg"></div>
+					<div data-role="fieldcontain" class="ticketField">
+					    <label for="email">
+					        Email:
+						    <input name="email" id="search-email" placeholder="" value="" type="text">
+					    </label>
+					</div>
+					<a data-role="button" data-theme="d" href="#page1" data-icon="search" data-iconpos="left" class="btn-search-action">
+						Search
+					</a>
+					<a data-role="button" data-theme="d" href="#page1" data-icon="search" data-iconpos="left" class="btn-search-close">
+						Close
+					</a>
+					<h4>Search Results:</h4>
+					<div class="resultList"></div>
+					<div class="resultTicket hide">
+						<div data-role="fieldcontain" class="ticketField">
+						    <label for="purchaseId">
+						        Purchase Id:
+							    <input name="purchaseId" class="purchaseId" placeholder="" value="" type="text" onkeypress="return false;">
+						    </label>
+						</div>
+						<div data-role="fieldcontain" class="ticketField">
+						    <label for="ticket">
+						        Ticket Code:
+							    <input name="ticket" class="ticket" placeholder="" value="" type="text" onkeypress="return false;">
+						    </label>
+						</div>
+						<div data-role="fieldcontain" class="ticketField">
+						    <label for="email">
+						        Email:
+							    <input name="email" class="email" placeholder="" value="" type="text" onkeypress="return false;">
+						    </label>
+						</div>
+						<div data-role="fieldcontain" class="ticketField">
+						    <label for="description">
+						        Description:
+							    <input name="description" class="description" placeholder="" value="" type="text" onkeypress="return false;">
+						    </label>
+						</div>
+						<div data-role="fieldcontain" class="ticketField">
+						    <label for="category">
+						        Category:
+							    <input name="category" class="category" placeholder="" value="" type="text" onkeypress="return false;">
+						    </label>
+						</div>
+						<div data-role="fieldcontain" class="ticketField">
+						    <label for="cost">
+						        Cost:
+							    <input name="cost" class="cost" placeholder="" value="" type="text" onkeypress="return false;">
+						    </label>
+						</div>
+						<a data-role="button" data-theme="b" href="#page1" data-icon="search" data-iconpos="left" class="btn-process">
+							Process
+						</a>
 					</div>
 				</div>
 			</div>

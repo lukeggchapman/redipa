@@ -2,10 +2,6 @@
 	display: none;
 }
 
-.btn-seach {
-	display: none;
-}
-
 .ticketDetails {
 	display: none;
 	padding: 10px;
@@ -17,25 +13,35 @@
 	background-color: #FFF;
 }
 
-.ticketDetails .errormsg {
-	display: none;
+.successmsg,
+.search-msg,
+.errormsg {
 	text-align: center;
 	font-size: 26px;
 	margin: 13px;
 }
 
-.ticketDetails.presale {
-	display: block;
-	background-color: #74cfff;
+.successmsg,
+.search-msg {
+	background-color: #79ff70;
 }
 
-.ticketDetails.crew {
+.errormsg {
+	background-color: #DF4E59;
+}
+
+.presale {
 	display: block;
 	background-color: #79ff6a;
 }
 
-.ticketDetails.errorScanned,
-.ticketDetails.error {
+.crew {
+	display: block;
+	background-color: #74cfff;
+}
+
+.errorScanned,
+.error {
 	display: block;
 	background-color: #DF4E59;
 }
@@ -49,6 +55,16 @@
 	display: block;
 }
 
+.btn-seach-result {
+	min-height: 40px;
+	line-height: 40px;
+}
+
+.btn-seach-result.ticket-scanned {
+	background-color: #ff6b6b;
+	background-image: none;
+}
+
 /* Jquery UI overrides */
 .ui-field-contain, fieldset.ui-field-contain {
 	padding: 0;
@@ -58,6 +74,6 @@
 	min-width: 350px;
 }
 
-.ui-btn-inner {
+.buttons .ui-btn-inner {
 	font-size: 34px;
 }
