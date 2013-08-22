@@ -6,7 +6,8 @@ require.config({
 		jquery: '../vendor/jquery',
 		jquerymobile: '../vendor/jquery.mobile',
 		underscore: '../vendor/underscore',
-		backbone: '../vendor/backbone'
+		backbone: '../vendor/backbone',
+		localstorage: '../vendor/backbone.localStorage'
 	},
 	shim: {
 		jquery: {

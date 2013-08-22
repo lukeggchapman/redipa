@@ -2,6 +2,10 @@
 	display: none;
 }
 
+.btn-seach {
+	display: none;
+}
+
 .ticketDetails {
 	display: none;
 	padding: 10px;
@@ -15,6 +19,9 @@
 
 .ticketDetails .errormsg {
 	display: none;
+	text-align: center;
+	font-size: 26px;
+	margin: 13px;
 }
 
 .ticketDetails.presale {
@@ -27,15 +34,17 @@
 	background-color: #79ff6a;
 }
 
+.ticketDetails.errorScanned,
 .ticketDetails.error {
 	display: block;
-	background-color: #ff7984;
+	background-color: #DF4E59;
 }
 
 .ticketDetails.error .ticketField {
 	display: none;
 }
 
+.ticketDetails.errorScanned .errormsg,
 .ticketDetails.error .errormsg {
 	display: block;
 }
@@ -43,4 +52,12 @@
 /* Jquery UI overrides */
 .ui-field-contain, fieldset.ui-field-contain {
 	padding: 0;
+}
+
+.fieldcontain input {
+	min-width: 350px;
+}
+
+.ui-btn-inner {
+	font-size: 34px;
 }

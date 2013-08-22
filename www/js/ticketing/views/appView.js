@@ -11,7 +11,7 @@ define(['backbone', 'underscore', 'collections/tickets', 'jquery', 'jquerymobile
 		},
 
 		events: {
-			"click .btn-scan" : "scan"
+			"touchstart .btn-scan" : "scan",
 		},
 
 		initialize: function () {
@@ -62,14 +62,21 @@ define(['backbone', 'underscore', 'collections/tickets', 'jquery', 'jquerymobile
 		},
 
 		ticketScanned: function (result) {
-			var ticket = this.tickets.where({ticket: result.text});
-			if (ticket.length == 1) {
-				this.setTicketFields(ticket[0]);
-				// alert('ticket' + ticket[0].get("description"));
+			var ticketArr = this.tickets.where({ticket: result.text});
+			var ticketDetails;
+			if (ticketArr.length == 1) {
+				var ticket = ticketArr[0];
+				this.setTicketFields(ticket);
+				if (ticket.get('scanned')) {
+					ticketDetails = this.$el.find('.ticketDetails').addClass("errorScanned");
+					ticketDetails.find('.errormsg').html("Ticket already scanned!");
+				} else {
+					this.tickets.setScannedTicket(ticket.id);
+				}
 			} else {
-				var ticketDetails = this.$el.find('.ticketDetails').addClass("error");
+				ticketDetails = this.$el.find('.ticketDetails').addClass("error");
 				var msg;
-				if (ticket.length > 1) {
+				if (ticketArr.length > 1) {
 					msg = "Duplicate ticket found!";
 				} else {
 					msg = "No ticket Found!";
@@ -85,6 +92,7 @@ define(['backbone', 'underscore', 'collections/tickets', 'jquery', 'jquerymobile
 			ticketDetails.find("#email").val(ticket.get("email"));
 			ticketDetails.find("#description").val(ticket.get("description"));
 			ticketDetails.find("#category").val(ticket.get("category"));
+			ticketDetails.find("#cost").val(ticket.get("cost"));
 		},
 
 		ticketFailed: function (error) {

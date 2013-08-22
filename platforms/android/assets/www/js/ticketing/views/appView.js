@@ -11,18 +11,45 @@ define(['backbone', 'underscore', 'collections/tickets', 'jquery', 'jquerymobile
 		},
 
 		events: {
-			"click .btn-scan" : "scan"
+			"touchstart .btn-scan" : "scan",
 		},
 
 		initialize: function () {
-			this.scanner = cordova.require("com.phonegap.plugins.barcodescanner.barcodescanner");
-			$.getJSON('/js/ticketing/data/tickets.json', _.bind(this.ready, this));
-
+			this.scanner = window.cordova ? cordova.require("com.phonegap.plugins.barcodescanner.barcodescanner") : {};
+			if (!window.localStorage.getItem('tickets')) {
+				console.log('Loading tickets from JSON...');
+				$.getJSON('js/ticketing/data/tickets.json')
+				.done(function () {
+					console.log('Fetching tickets completed');
+				})
+				.fail(function () {
+					var errorMsg = 'An error occured while fetching the tickets';
+					if (window.navigator.notification) {
+						window.navigator.notification.alert(
+							errorMsg,
+							function callback() {
+								// reset local storage
+								window.localStorage.clear();
+							},
+							'Error',
+							'Close'
+						);
+					} else {
+						window.alert(errorMsg);
+					}
+				})
+				.always(_.bind(this.ready, this));
+			} else {
+				this.ready(null);
+			}
 			return this;
 		},
 
 		ready: function (data) {
 			this.tickets = new TicketsCollection(data);
+			if (!data) {
+				this.tickets.fetch();
+			}
 			this.$el.removeClass("hide");
 		},
 
@@ -35,14 +62,21 @@ define(['backbone', 'underscore', 'collections/tickets', 'jquery', 'jquerymobile
 		},
 
 		ticketScanned: function (result) {
-			var ticket = this.tickets.where({ticket: result.text});
-			if (ticket.length == 1) {
-				this.setTicketFields(ticket[0]);
-				// alert('ticket' + ticket[0].get("description"));
+			var ticketArr = this.tickets.where({ticket: result.text});
+			var ticketDetails;
+			if (ticketArr.length == 1) {
+				var ticket = ticketArr[0];
+				this.setTicketFields(ticket);
+				if (ticket.get('scanned')) {
+					ticketDetails = this.$el.find('.ticketDetails').addClass("errorScanned");
+					ticketDetails.find('.errormsg').html("Ticket already scanned!");
+				} else {
+					this.tickets.setScannedTicket(ticket.id);
+				}
 			} else {
-				var ticketDetails = this.$el.find('.ticketDetails').addClass("error");
+				ticketDetails = this.$el.find('.ticketDetails').addClass("error");
 				var msg;
-				if (ticket.length > 1) {
+				if (ticketArr.length > 1) {
 					msg = "Duplicate ticket found!";
 				} else {
 					msg = "No ticket Found!";
@@ -58,6 +92,7 @@ define(['backbone', 'underscore', 'collections/tickets', 'jquery', 'jquerymobile
 			ticketDetails.find("#email").val(ticket.get("email"));
 			ticketDetails.find("#description").val(ticket.get("description"));
 			ticketDetails.find("#category").val(ticket.get("category"));
+			ticketDetails.find("#cost").val(ticket.get("cost"));
 		},
 
 		ticketFailed: function (error) {
